@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from "react";
-
 import ProductCard from "../components/producrcard.jsx";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -15,7 +16,7 @@ const Home = () => {
             let retrying = false;
 
             try {
-                const res = await fetch("/api/products");
+                const res = await fetch(`${API_URL}/api/products`);
 
                 if (!res.ok) {
                     throw new Error(`Could not load products (${res.status})`);
@@ -30,8 +31,8 @@ const Home = () => {
                 if (!cancelled) {
                     setProducts(data.slice(0, 4));
                 }
+
             } catch (requestError) {
-                // Vite can start before Express. Retry briefly while the backend starts.
                 if (attempt < 5 && !cancelled) {
                     retrying = true;
                     window.setTimeout(() => fetchProducts(attempt + 1), 1000);
@@ -39,9 +40,11 @@ const Home = () => {
                 }
 
                 console.error("Product fetch error:", requestError);
+
                 if (!cancelled) {
-                    setError("Products could not be loaded. Please check that the backend is running on port 5000.");
+                    setError("Products could not be loaded. Please try again.");
                 }
+
             } finally {
                 if (!cancelled && !retrying) {
                     setLoading(false);
@@ -56,29 +59,36 @@ const Home = () => {
         };
     }, []);
 
-     
     return (
         <main className="main-content">
-           
-          <div className="hero-banner">
-            <h1>Welcome to ShopNest</h1>
-            <p>Discover the best products at unbeatble prices.</p>
 
-          </div>
-
-          <h2>Featured Products</h2>
-          {loading && <div>Loading products...</div>}
-          {error && <p>{error}</p>}
-          {!loading && !error && products.length === 0 && <p>No products found.</p>}
-          {!loading && !error && products.length > 0 && (
-            <div className="product-grid">
-              {products.map((product) => (
-                <ProductCard key={product._id} product={product} />
-              ))}
+            <div className="hero-banner">
+                <h1>Welcome to ShopNest</h1>
+                <p>Discover the best products at unbeatable prices.</p>
             </div>
-          )}
-        </main>
 
+            <h2>Featured Products</h2>
+
+            {loading && <div>Loading products...</div>}
+
+            {error && <p>{error}</p>}
+
+            {!loading && !error && products.length === 0 && (
+                <p>No products found.</p>
+            )}
+
+            {!loading && !error && products.length > 0 && (
+                <div className="product-grid">
+                    {products.map((product) => (
+                        <ProductCard
+                            key={product._id}
+                            product={product}
+                        />
+                    ))}
+                </div>
+            )}
+
+        </main>
     );
 };
 
