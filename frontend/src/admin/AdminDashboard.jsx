@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-
+import { apiFetch } from '../utils/api';
 const AdminDashboard = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [stats, setStats] = useState(null);
-
+s
   useEffect(() => {
     if (!user || user.role !== 'admin') {
       navigate('/');
@@ -15,9 +15,11 @@ const AdminDashboard = () => {
 
     const fetchStats = async () => {
       try {
-        const res = await fetch('/api/analytics', {
-          headers: { Authorization: `Bearer ${user.token}` }
-        });
+       const res = await apiFetch('/api/analytics', {
+  headers: {
+    Authorization: `Bearer ${user.token}`
+  }
+});
         const data = await res.json();
         if (res.ok) {
           setStats(data);

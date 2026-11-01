@@ -2,6 +2,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { apiFetch } from "../utils/api";
 import "../styles/auth.css";
 
 const Register = () => {
@@ -16,7 +17,7 @@ const Register = () => {
         e.preventDefault();
 
         try {
-            const res = await fetch("/api/auth/register", {
+            const res = await apiFetch("/api/auth/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -42,6 +43,7 @@ const Register = () => {
 
             login(data);
             navigate("/");
+
         } catch (error) {
             console.error("Network or server error:", error);
             alert("Unable to connect to the server. Please try again.");

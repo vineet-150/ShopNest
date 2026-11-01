@@ -1,8 +1,8 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "../components/producrcard.jsx";
+import { apiFetch } from "../utils/api";
 
-const API_URL = import.meta.env.VITE_API_URL;
 
 const Home = () => {
     const [products, setProducts] = useState([]);
@@ -16,7 +16,7 @@ const Home = () => {
             let retrying = false;
 
             try {
-                const res = await fetch(`${API_URL}/api/products`);
+                const res =await apiFetch("/api/products");
 
                 if (!res.ok) {
                     throw new Error(`Could not load products (${res.status})`);

@@ -43,7 +43,7 @@ app.use("/api/orders",orderroute);
 app.use("/api/payment",paymentroute);
 // Keep the old path working for anyone using an older frontend build.
 app.use("/api/paymnet",paymentroute);
-app.use("/api/analystics",analyticsroutes);
+app.use("/api/analytics", analyticsroutes);
 
 
 
