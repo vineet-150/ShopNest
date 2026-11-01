@@ -1,30 +1,30 @@
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar from './components/Navbar.jsx';
+import Footer from './components/Footer.jsx';
 
 // User pages
-import Home from './pages/Home';
-import Shop from './pages/Shop';
+import Home from './pages/Home.jsx';
+import Shop from './pages/Shop.jsx';
 import ProductDetail from './pages/ProductDetailsPage.jsx';
-import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Profile from './pages/Profile';
-import OrderSuccess from './pages/OrderSuccess';
-import About from './pages/About';
-import Disclaimer from './pages/Disclaimer';
-import ReturnPolicy from './pages/ReturnPolicy';
+import Cart from './pages/Cart.jsx';
+import Checkout from './pages/CheckOut.jsx';
+import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
+import Profile from './pages/Profile.jsx';
+import OrderSuccess from './pages/OrderSuccess.jsx';
+import About from './pages/About.jsx';
+import Disclaimer from './pages/Disclaimer.jsx';
+import ReturnPolicy from './pages/ReturnPolicy.jsx';
 
 // Admin pages
-import AdminDashboard from './admin/AdminDashboard';
-import AddProduct from './admin/AddProduct';
-import AdminProducts from './admin/AdminProducts';
-import EditProduct from './admin/EditProduct';
-import AdminOrders from './admin/AdminOrders';
-import AdminUsers from './admin/AdminUsers';
+import AdminDashboard from './admin/AdminDashboard.jsx';
+import AddProduct from './admin/AddProduct.jsx';
+import AdminProducts from './admin/AdminProducts.jsx';
+import EditProduct from './admin/EditProduct.jsx';
+import AdminOrders from './admin/AdminOrders.jsx';
+import AdminUsers from './admin/AdminUsers.jsx';
 
 function App() {
   return (
